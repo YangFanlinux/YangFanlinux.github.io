@@ -3,12 +3,17 @@
   <entry>
     <title><![CDATA[深入理解rgw multisite]]></title>
     <url>%2F2017%2F06%2F22%2F%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3rgw-multisite%2F</url>
-    <content type="text"><![CDATA[深入理解rgw multisite前言随着社区在jewel版对multisite进行重构，multisitev2作为全新的对象存储灾备特性了用户的视野。作为rgw集群整体数据灾备方案，从ceph社区邮件列表中可以得知，中移动苏州研究院等企业已经开始将此特性应用于生产环境中。 本文从以下四个方面对multisite进行介绍]]></content>
+    <content type="text"><![CDATA[前言 随着社区在jewel版对multisite进行重构，multisitev2作为全新的对象存储灾备特性了用户的视野。作为rgw集群整体数据灾备方案，从ceph社区来看，H3C和中移动苏州研究院等企业已经开始将此特性应用于产品中。 本文从以下四个方面对multisite进行介绍： 1. Multisite概念介绍 2. Multisite部署 2. Multisite原理介绍 3. 灾难发生时的故障处理 4. 目前版本multisite已知问题 5. 后续multisite社区发展方向 Multisite概念与部署 Multisite原理介绍 灾难发生时的故障处理 目前版本multisite已知问题 未来ceph rgw灾备社区发展方向 展望]]></content>
       <categories>
         <category>ceph</category>
       </categories>
       <tags>
         <tag>rgw</tag>
       </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[博客搬家]]></title>
+    <url>%2F2017%2F06%2F22%2F%E5%8D%9A%E5%AE%A2%E8%BF%81%E7%A7%BB%2F</url>
+    <content type="text"><![CDATA[我的博客搬到github了。之前的旧文章可以在这里 查看。]]></content>
   </entry>
 </search>
