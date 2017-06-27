@@ -307,6 +307,117 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yangfanlinux.github.io/2017/06/26/测试文章/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YangFan">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="YangFan's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/06/26/测试文章/" itemprop="url">测试文章</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-26T18:01:31+08:00">
+                2017-06-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
     <link itemprop="mainEntityOfPage" href="http://yangfanlinux.github.io/2017/06/22/深入理解rgw-multisite/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -436,7 +547,7 @@
 <p>　　下述命令获取period的历史信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">radosgw-admin period list</div><div class="line">&#123;</div><div class="line">  &quot;periods&quot;: [</div><div class="line">      &quot;03202997-3b9e-4455-a2dc-c1e442376589:staging&quot;,</div><div class="line">      &quot;3956f90a-6f67-4f7c-aba0-df2fc6600117&quot;,</div><div class="line">      &quot;5a57fda5-e21a-4ea3-a135-c5e8f6ef85d2&quot;,</div><div class="line">      &quot;9c16dc3a-2c4c-418e-9332-857bfecbcc7b&quot;,</div><div class="line">      &quot;dc8661a1-b013-4a12-aa60-07025dbc5d38&quot;</div><div class="line">  ]</div><div class="line">　　&#125;</div></pre></td></tr></table></figure></p>
 <p>　　每个realm关联当前的period，以及一列period历史信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">radosgw-admin realm get</div><div class="line">&#123;</div><div class="line">    &quot;id&quot;: &quot;03202997-3b9e-4455-a2dc-c1e442376589&quot;,</div><div class="line">    &quot;name&quot;: &quot;earth&quot;,</div><div class="line">    &quot;current_period&quot;: &quot;9c16dc3a-2c4c-418e-9332-857bfecbcc7b&quot;,</div><div class="line">    &quot;epoch&quot;: 4</div><div class="line">&#125;</div><div class="line"></div><div class="line">radosgw-admin realm list-periods</div><div class="line">&#123;</div><div class="line">    &quot;current_period&quot;: &quot;9c16dc3a-2c4c-418e-9332-857bfecbcc7b&quot;,</div><div class="line">    &quot;periods&quot;: [</div><div class="line">        &quot;9c16dc3a-2c4c-418e-9332-857bfecbcc7b&quot;,</div><div class="line">        &quot;5a57fda5-e21a-4ea3-a135-c5e8f6ef85d2&quot;,</div><div class="line">        &quot;3956f90a-6f67-4f7c-aba0-df2fc6600117&quot;,</div><div class="line">        &quot;dc8661a1-b013-4a12-aa60-07025dbc5d38&quot;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>　　multisite配置设计成类似git的机制。用户配置存储在stagging  period中，可以通过radosgw-adim period update命令更新period。multisite配置更改后，需要通过radosgw-admin period commit命令使其生效。<br>　　每个zone可以通过radosgw-admin period pull拉取配置。</p>
-<h2 id="Realm、Zonegroup和Zone的关系"><a href="#Realm、Zonegroup和Zone的关系" class="headerlink" title="Realm、Zonegroup和Zone的关系"></a>Realm、Zonegroup和Zone的关系</h2><p>　　<img src="/images/1.png" alt=""></p>
+<h2 id="Realm、Zonegroup和Zone的关系"><a href="#Realm、Zonegroup和Zone的关系" class="headerlink" title="Realm、Zonegroup和Zone的关系"></a>Realm、Zonegroup和Zone的关系</h2><p>　　</p>
 <h1 id="灾难发生时的故障处理"><a href="#灾难发生时的故障处理" class="headerlink" title=" 灾难发生时的故障处理  "></a><span id="4"> 灾难发生时的故障处理  </span></h1><h1 id="目前版本multisite已知问题"><a href="#目前版本multisite已知问题" class="headerlink" title=" 目前版本multisite已知问题  "></a><span id="5"> 目前版本multisite已知问题  </span></h1><h1 id="未来ceph-rgw灾备社区发展方向-展望"><a href="#未来ceph-rgw灾备社区发展方向-展望" class="headerlink" title=" 未来ceph rgw灾备社区发展方向 展望 "></a><span id="6"> 未来ceph rgw灾备社区发展方向 展望 </span></h1>
           
         
@@ -628,7 +739,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
