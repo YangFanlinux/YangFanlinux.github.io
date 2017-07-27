@@ -102,7 +102,7 @@
 <meta property="og:description" content="前言　　随着社区在jewel版对multisite进行重构，multisitev2作为全新的对象存储灾备特性了用户的视野。作为rgw集群整体数据灾备方案，从ceph社区来看，H3C和中移动苏州研究院等企业已经开始将此特性应用于产品中。　　本文从以下八个方面对multisite进行介绍：　　1. Multisite概念介绍　　2. Multisite部署　　3. Multisite原理介绍　　4.">
 <meta property="og:image" content="http://yangfanlinux.github.io/2017/06/22/深入理解rgw-multisite/1.png">
 <meta property="og:image" content="http://yangfanlinux.github.io/2017/06/22/深入理解rgw-multisite/2.png">
-<meta property="og:updated_time" content="2017-06-28T09:20:36.124Z">
+<meta property="og:updated_time" content="2017-07-13T01:19:26.914Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="rgw multisite最佳实践">
 <meta name="twitter:description" content="前言　　随着社区在jewel版对multisite进行重构，multisitev2作为全新的对象存储灾备特性了用户的视野。作为rgw集群整体数据灾备方案，从ceph社区来看，H3C和中移动苏州研究院等企业已经开始将此特性应用于产品中。　　本文从以下八个方面对multisite进行介绍：　　1. Multisite概念介绍　　2. Multisite部署　　3. Multisite原理介绍　　4.">
@@ -485,7 +485,16 @@
 <p>　　创建system user<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">　　radosgw-admin user create --uid=&lt;user-id&gt; --display-name=&quot;&lt;display-name&gt;&quot; \</div><div class="line">--access-key=&lt;access-key&gt; --secret=&lt;secret-key&gt; --system</div></pre></td></tr></table></figure></p>
 <p>　　更新配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">　　radosgw-admin period update --commit</div></pre></td></tr></table></figure></p>
 <p>　　重启rgw服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">　　service radosgw restart id=&lt;rgw.hostname&gt;</div></pre></td></tr></table></figure></p>
-<h1 id="目前jewel-10-2-7版本multisite已知问题"><a href="#目前jewel-10-2-7版本multisite已知问题" class="headerlink" title=" 目前jewel 10.2.7版本multisite已知问题 "></a><span id="6"> 目前jewel 10.2.7版本multisite已知问题 </span></h1><h1 id="未来multisite-feature特性展望"><a href="#未来multisite-feature特性展望" class="headerlink" title=" 未来multisite feature特性展望 "></a><span id="7"> 未来multisite feature特性展望 </span></h1><h2 id="bucket粒度同步特性"><a href="#bucket粒度同步特性" class="headerlink" title="bucket粒度同步特性"></a>bucket粒度同步特性</h2><p>　　当前multisite还是以ceph集群整体为单位进行迁移，后续会提供类似公有云服务以bucket粒度进行数据同步的功能。例如AWS s3 CRR特性。由H3C公司开发，PR已经进入了review和unit test阶段。具体请见 <a href="https://github.com/ceph/ceph/pull/10995。" target="_blank" rel="external">https://github.com/ceph/ceph/pull/10995。</a> </p>
+<h1 id="目前jewel-10-2-7版本multisite已知问题"><a href="#目前jewel-10-2-7版本multisite已知问题" class="headerlink" title=" 目前jewel 10.2.7版本multisite已知问题 "></a><span id="6"> 目前jewel 10.2.7版本multisite已知问题 </span></h1><ul>
+<li><a href="https://github.com/ceph/ceph/pull/15453" target="_blank" rel="external">https://github.com/ceph/ceph/pull/15453</a>  bucket的 acl和cors不能同步到slave zone</li>
+<li><a href="https://github.com/ceph/ceph/pull/15450" target="_blank" rel="external">https://github.com/ceph/ceph/pull/15450</a>  bucket index shards索引无法同步</li>
+<li><a href="https://github.com/ceph/ceph/pull/15458" target="_blank" rel="external">https://github.com/ceph/ceph/pull/15458</a> radosgw-admin period命令无法在remote端执行</li>
+<li><a href="https://github.com/ceph/ceph/pull/15457" target="_blank" rel="external">https://github.com/ceph/ceph/pull/15457</a> 内存泄漏</li>
+<li><a href="https://github.com/ceph/ceph/pull/15454" target="_blank" rel="external">https://github.com/ceph/ceph/pull/15454</a> realm rename 无法同步到其他集群</li>
+<li><a href="https://github.com/ceph/ceph/pull/15545" target="_blank" rel="external">https://github.com/ceph/ceph/pull/15545</a> 当rados集群异常时 bucket index没有同步</li>
+<li><a href="https://github.com/ceph/ceph/pull/15556" target="_blank" rel="external">https://github.com/ceph/ceph/pull/15556</a> 增量元数据同步不能在下一个period生效</li>
+</ul>
+<h1 id="未来multisite-feature特性展望"><a href="#未来multisite-feature特性展望" class="headerlink" title=" 未来multisite feature特性展望 "></a><span id="7"> 未来multisite feature特性展望 </span></h1><h2 id="bucket粒度同步特性"><a href="#bucket粒度同步特性" class="headerlink" title="bucket粒度同步特性"></a>bucket粒度同步特性</h2><p>　　当前multisite还是以ceph集群整体为单位进行迁移，后续会提供类似公有云服务以bucket粒度进行数据同步的功能。例如AWS s3 CRR特性。由H3C公司开发，PR已经进入了review和unit test阶段。具体请见 <a href="https://github.com/ceph/ceph/pull/10995。" target="_blank" rel="external">https://github.com/ceph/ceph/pull/10995。</a> </p>
 <h2 id="multisite框架支持插件"><a href="#multisite框架支持插件" class="headerlink" title="multisite框架支持插件"></a>multisite框架支持插件</h2><p>　　multisite在L版已经支持基于multisite机制的插件开发框架。rgw metadata search就是基于此开发的，同时一些开发人员基于此框架也开发了数据同步到其他对象存储的混合云存储功能。可以参考如下链接：</p>
 <ul>
 <li>rgw metadate feature：<a href="https://github.com/ceph/ceph/pull/10731" target="_blank" rel="external">PR1</a>，<a href="https://github.com/ceph/ceph/pull/14351" target="_blank" rel="external">PR2</a>，<a href="http://ceph.com/geen-categorie/rgw-metadata-search/" target="_blank" rel="external">参考资料1</a>，<a href="http://blog.umcloud.com/metasearch/" target="_blank" rel="external">参考资料2</a></li>
@@ -545,6 +554,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/26/静态站点上云指南/" rel="prev" title="静态站点上云指南">
+                静态站点上云指南 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -616,7 +629,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
